@@ -7,4 +7,7 @@
 * LiquidCrystal-I2C: https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library
 
 ## Schematic:
-![Screenshot](Schematic.png)
+![Screenshot](picture/Schematic.png)
+
+## Example display:
+![Screenshot](picture/example.jpg)
