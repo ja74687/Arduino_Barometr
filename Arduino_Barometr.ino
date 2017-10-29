@@ -8,7 +8,7 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
 int i = 0;
 int avg = 0;
 int onOffScreen = 1;
-double pressureAVG[25];
+int pressureAVG[10];
 unsigned long timer;
 
 byte stopnie[8] = {
