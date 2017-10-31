@@ -8,7 +8,8 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
 int i = 0;
 int avg = 0;
 int onOffScreen = 1;
-int pressureAVG[10];
+int pressureAVG[30];
+int sizeArrayPressure = 30;
 unsigned long timer;
 
 byte stopnie[8] = {
@@ -48,6 +49,7 @@ void setup() {
   pinMode(5, OUTPUT);
   digitalWrite(5, HIGH);
   pinMode(4, INPUT);
+  Serial.begin(9600);
   lcd.init();
   lcd.init();
   lcd.backlight();
@@ -103,19 +105,20 @@ void displayLCD(int temp, int pressure, int altitude)
   lcd.print(" hPa");
 
   //----------------------------- Przewidywana tendencja -------------------
-  if (i < 10)
+  if (i < sizeArrayPressure)
   {
     pressureAVG[i] = pressure;
-    if (i == 9)
+    if (i == (sizeArrayPressure-1))
     {
       double x = 0;
 
-      for (int j = 0; j < 10; j++)
+      for (int j = 0; j < sizeArrayPressure; j++)
       {
         x += pressureAVG[j];
       }
-      avg = x / 10;
-
+      avg = x / sizeArrayPressure;
+      Serial.print("AVG Pressure: ");
+      Serial.println(avg);
     }
   } else {
     i = 0;
